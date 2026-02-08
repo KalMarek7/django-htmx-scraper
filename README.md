@@ -29,9 +29,9 @@ A Proof of Concept (PoC) project demonstrating the integration of **Django** wit
 1. Clone the repository:
 
     ```bash
-    git clone [https://github.com/YourUser/repo-name.git](https://github.com/YourUser/repo-name.git)
-    cd repo-name
+    git clone https://github.com/KalMarek7/django-htmx-scraper.git
 
+    cd django-htmx-scraper
     ```
 
 2. Run `docker compose up`
