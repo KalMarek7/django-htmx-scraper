@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scraper</title>
+    <link rel="stylesheet" href="{% static 'home/style.css' %}">
+    <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.8/dist/htmx.min.js"></script>
+</head>
+<body>
+    <h1>Mock Web Scraper built wih Docker, Django, MySQL, BeautifulSoup, HTMX</h1>
+    <p>Click the button below to refresh the data</p>
+    <button 
+        hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
+        hx-post="{% url "update" %}"
+        hx-target="#currency_table"
+        hx-swap="outerHTML"
+        hx-indicator="#indicator"
+        hx-disabled-elt="this"
+        >
+            Refresh
+        </button>
+    <p id="indicator" class="htmx-indicator">
+        Loading...
+    </p>
+    <p id="refresh-date">Last refresh date: <b>{{ date }}</b></p>
+    <form id="django-search" action="{% url 'home' %}" method="GET">
+        <p>Django q search</p>
+        <input type="text" name="q" value="{{ request.GET.q }}">
+        <button type="submit">Search</button>
+        <a href="{% url 'home' %}">Clear</a>
+    </form>
+    <hr>
+    <form id="htmx-search" hx-get="{% url 'home' %}" hx-target="#currency_table"
+        hx-swap="outerHTML">
+        <p>HTMX search</p>
+        <input type="text" name="qhtmx">
+        <button
+            type="submit"
+        >
+            Search
+        </button>
+    </form>
+    <hr>
+    <table>
+        <thead>
+            <tr>
+                <th>Kraj</th>
+                <th>Waluta</th>
+                <th>Kurs</th>
+                <th>Symbol</th>
+            </tr>
+        </thead>
+        <tbody id="currency_table">
+        {% for currency in currencies  %}
+            <tr>
+                <td>{{ currency.country }}</td>
+                <td>{{ currency.currency }}</td>
+                <td>{{ currency.exchange_rate }}</td>
+                <td>{{ currency.symbol }}</td>
+            </tr>  
+        {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

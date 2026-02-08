@@ -1,0 +1,14 @@
+<tbody id="currency_table">
+{% for currency in currencies  %}
+    <tr>
+        <td>{{ currency.country }}</td>
+        <td>{{ currency.currency }}</td>
+        <td>{{ currency.exchange_rate }}</td>
+        <td>{{ currency.symbol }}</td>
+        </tr>  
+{% endfor %}
+</tbody>
+<p id="refresh-date" hx-swap-oob="true">Last refresh date: <b>{{ date }}</b></p>
+{% if error %}
+    <p id="indicator" hx-swap-oob="true"><b>Error scraping the data</b></p>
+{% endif %}
