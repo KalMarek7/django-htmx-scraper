@@ -35,3 +35,13 @@ A Proof of Concept (PoC) project demonstrating the integration of **Django** wit
     ```
 
 2. Run `docker compose up`
+
+3. Run migrations:
+
+```
+docker compose exec web bash
+
+python manage.py migrate
+```
+
+4. Hit **Refresh**

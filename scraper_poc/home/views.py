@@ -49,7 +49,7 @@ def home(request: HttpRequest):
 
 # for htmx
 def update(request):
-    scraper = CurrencyScraper("https://www.google.pl/")
+    scraper = CurrencyScraper("https://www.bankier.pl/waluty/kursy-walut/nbp")
     scraper.get_data()
     scraping_result = scraper.insert_data()
 
