@@ -65,7 +65,7 @@ class CurrencyScraper(BaseScraper):
         print(rows)
         if rows == []:
             print(
-                "Do not have the data, something went wrong with scraping in self.get_data() (web_scraper.py)"
+                "Do not have the data, something went wrong with scraping in self.get_data() (oop_web_scraper.py)"
             )
         self.data = rows
         return rows
